@@ -35,11 +35,11 @@ parser.add_argument('--label_len', type=int, default=3, help='start token length
 parser.add_argument('--pred_len', type=int, default=1, help='prediction sequence length')  # 预测长度
 
 parser.add_argument('--enc_in', type=int, default=96,
-                    help='encoder input size')  # 编码器输入特征维度大小,这个对应'datam':{'data':'datam.csv','T':'close','M':[321,321,321],'S':[1,1,1],'MS':[5,5,1]},中的设置，可直接在后面设置
+                    help='encoder input size')  # 编码器输入特征维度大小
 parser.add_argument('--dec_in', type=int, default=96,
-                    help='decoder input size')  # 解码器输入特征维度大小这个对应'datam':{'data':'datam.csv','T':'close','M':[321,321,321],'S':[1,1,1],'MS':[5,5,1]},中的设置，可直接在后面设置
+                    help='decoder input size')  # 解码器输入特征维度大小
 parser.add_argument('--c_out', type=int, default=3,
-                    help='output size')  # 输出维度大小，这个根据自己的预测任务来改，比如多输入单输出的就为1，这个对应'datam':{'data':'datam.csv','T':'close','M':[321,321,321],'S':[1,1,1],'MS':[5,5,1]},中的设置，可直接在后面设置
+                    help='output size')  # 输出维度大小
 parser.add_argument('--d_model', type=int, default=128, help='dimension of model')  # Emberding维度，把所以维度emberding到同一维度
 parser.add_argument('--n_heads', type=int, default=4, help='num of heads')  # 注意力头数
 parser.add_argument('--e_layers', type=int, default=1, help='num of encoder layers')  # 编码器层数
@@ -78,10 +78,10 @@ parser.add_argument('--use_gpu', type=bool, default=True, help='use gpu')  # 是
 parser.add_argument('--gpu', type=int, default=0, help='gpu')  # 单个gpu时对应的设备id，单个gpu为0
 parser.add_argument('--use_multi_gpu', action='store_true', help='use multiple gpus', default=False)  # 多块gpu
 parser.add_argument('--devices', type=str, default='0,1,2,3', help='device ids of multile gpus')  # 多gpu的id
-parser.add_argument('-h_dim', type=int, default=16, help='device ids of multile gpus')  # 多gpu的id
-parser.add_argument('-pf', type=str, default="评级", help='device ids of multile gpus')  # 多gpu的id
-parser.add_argument('-sed', type=int, default=102, help='device ids of multile gpus')  # 多gpu的id
-parser.add_argument('-rd', type=int, default=0, help='device ids of multile gpus')  # 多gpu的id
+parser.add_argument('-h_dim', type=int, default=16)
+parser.add_argument('-pf', type=str, default="评级")
+parser.add_argument('-sed', type=int, default=102)
+parser.add_argument('-rd', type=int, default=0)
 # 获取以上参数
 args = parser.parse_args()
 # 判断gpu是否可用
@@ -94,7 +94,6 @@ if args.use_gpu and args.use_multi_gpu:
     args.gpu = args.device_ids[0]
 
 data_parser = {
-    # 数据的格式（换成自己的数据需要改，如'CCF':{'data':'CCF.csv','T':'close(目标特征)','M':[5,5,5]（输入5个特征，输出5个特征）,'S':[1,1,1],'MS':[12,12,1]},
     'WTH': {'data': 'WTH.csv', 'T': 'WetBulbCelsius', 'M': [12, 12, 12], 'S': [1, 1, 1], 'MS': [12, 12, 1]},
 
 }
