@@ -22,7 +22,7 @@ Through a series of experiments, we determined the optimal model structure and v
 
 
 # Key Components
-![alt text]([URL](https://github.com/leeyan0612/FeBT-A-Feature-Balancing-Transformer-for-Corporate-ESG-Forecasting/blob/master/figure/Figure_workflow.jpg) "Optional title")
+![the workflow of FeBT]((https://github.com/leeyan0612/FeBT-A-Feature-Balancing-Transformer-for-Corporate-ESG-Forecasting/blob/master/figure/Figure_workflow.jpg) "the workflow of FeBT")
 
 
 
