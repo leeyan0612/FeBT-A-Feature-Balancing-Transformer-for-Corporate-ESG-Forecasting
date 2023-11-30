@@ -63,7 +63,7 @@ class Exp(Exp_Basic):
             drop_last = True
             batch_size = args.batch_size
             freq = args.freq
-            with open('mydata/seed={}/{}/{}/test_data.pkl'.format(self.args.sed, prex, args.rd), 'rb') as f:
+            with open('mydata/test_data.pkl'.format(self.args.sed, prex, args.rd), 'rb') as f:
                 data = pickle.load(f)
         elif flag == 'pred':
             shuffle_flag = False
@@ -76,14 +76,14 @@ class Exp(Exp_Basic):
             drop_last = True
             batch_size = args.batch_size
             freq = args.freq
-            with open('mydata/seed={}/{}/{}/val_data.pkl'.format(self.args.sed, prex, args.rd), 'rb') as f:
+            with open('mydata/val_data.pkl'.format(self.args.sed, prex, args.rd), 'rb') as f:
                 data = pickle.load(f)
         else:
             shuffle_flag = True
             drop_last = False
             batch_size = args.batch_size
             freq = args.freq
-            with open('mydata/seed={}/{}/{}/train_data.pkl'.format(self.args.sed, prex, args.rd), 'rb') as f:
+            with open('mydata/train_data.pkl'.format(self.args.sed, prex, args.rd), 'rb') as f:
                 data = pickle.load(f)
         # 传入参数到数据生成类中处理
         data_set = Data(
