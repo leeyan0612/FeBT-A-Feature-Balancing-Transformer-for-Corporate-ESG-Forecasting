@@ -1,23 +1,20 @@
-# FeBT-A-Feature-Balancing-Transformer-for-Corporate-ESG-Forecasting
+Code for **_"FeBT : A Feature Balancing Transformer for Corporate ESG-Forecasting"_**
 
 # Contents
 - [Abstract](#abstract)
 - [Key Components](#key-components)
 	- [Workflow](#workflow)
-	- [Feature Balancing Model](#featurebalancingmodel)
-	- [Forecasting Model](#forecastingmodel)
+	- [Masking](#masking)
  - [Datasets and Evaluation Metrics](#datasets-and-evaluation-metrics)
    	- [Datasets](#datasets)
    	- [Evaluation Metrics](#evaluation-metrics)
  - [Performance](#performance)
- - [Conclusion](#conclusion)
- 	- [Contribution](#contribution) 	
+ - [Conclusion](#conclusion)	
  	- [Contribution](#contribution)
    	- [Limitation](#limitation)
 
 # Abstract
-
-Environmental, social, and governance (ESG) serves as a crucial indicator for evaluating firms in terms of sustainable development. However, the existing ESG evaluation systems suffer from limitations, such as narrow coverage, subjective bias, and lack of timeliness. Therefore, there is a pressing need to leverage machine learning methods to predict the ESG performance of firms using their publicly available data. However, traditional machine learning models encounter the feature imbalance problem due to the heterogeneity in ESG-related features, which results in the neglect of low-dimensional features. Common approaches typically involve unfolding all features, thereby granting high-dimensional features greater exposure and accessibility to downstream models.Consequently, a research gap exists regarding fully using the heterogeneous features of enterprises to enhance ESG prediction performance. In this paper, we propose FeBT, which is an end-to-end model based on a masking autoencoder and Transformer. FeBT incorporates a novel feature balancing technique that compresses and enhances high-dimensional features from imbalanced data into low-dimensional representations, thereby aligning them with other features. We also use an appropriate sliding window approach to expand the sample size and effectively capture temporal information, which leads to improved prediction performance. Through a series of experiments, we determined the optimal model structure and verified the superior performance of FeBT compared with state-of-the-art methods in predicting ESG performance.
+We propose FeBT, which is an end-to-end model based on a masking autoencoder and Transformer. FeBT incorporates a novel feature balancing technique that compresses and enhances high-dimensional features from imbalanced data into low-dimensional representations, thereby aligning them with other features. We also use an appropriate sliding window approach to expand the sample size and effectively capture temporal information, which leads to improved prediction performance. Through a series of experiments, we determined the optimal model structure and verified the superior performance of FeBT compared with state-of-the-art methods in predicting ESG performance.
 
 
 # Key Components
@@ -25,11 +22,18 @@ Environmental, social, and governance (ESG) serves as a crucial indicator for ev
 ## Workflow
 The operational schema of FeBT is depicted in the figure below. The workflow of FeBT is divided into two sequential phases: an initial pre-training phase confined to the feature balancing module, followed by a forecasting phase that engages the entire model. The FBM is located on the lower left in the figure and takes the folding features as input. It undertakes the pretraining of $A=|\mathbf{X}^{\rm fld}|$ distinct autoencoders for $A$ folding attributes, thereby deducing an optimal compression strategy that corresponds to each specified $d_i$ through a detached operation. Enhanced by data masking techniques, this module seeks to amplify the autoencoders’ proficiency in pattern distillation. After pre-training, the downstream Transformer harnesses the balanced dataset $\chi^{\rm bal}$ to extrapolate the final ESG predictions.
 
-
-
 ![the workflow of FeBT](./figure/Figure_workflow.jpg "the workflow of FeBT")
 
 ###### **Workflow of FeBT. Using the feature balancing technique, we allow the folding features $\mathbf{F}\_{i}$ within the imbalanced dataset $\chi^{\rm orig}$ to obtain latent representations through the upstream autoencoders. Subsequently, we construct a balanced feature set $\chi^{\rm bal}$ using these latent representations ${\mathbf{F}_{i}'|i=1,2,\cdots}$ combined with the original palin features $\mathbf{X}^{pln}$. Then we use the balanced feature set as the input for the downstream Transformer blocks to predict ESG scores.**
+
+## Masking
+To further enhance the quality of the compressed features, we use a masking technique. This technique involves deliberately erasing parts of the input features during the training of the autoencoders.  The erased parts, or masks, compel the autoencoders to focus on less obvious characteristics of the data, thereby improving their ability to reconstruct the original signal, even in the presence of incomplete or distorted input. This added complexity not only refines the feature representations but also leads to a degree of robustness in the model.  Specifically, we divide the folding feature vectors into $k$ regular non-overlapping patches and make one patch of them invisible to the encoders. We adopt one-hot positional embeddings to identify the location of patches. Figure below shows these procedures.
+
+<div align="center">
+  <img src="./figure/Figure_datamasking.jpg" alt="Datamasking" width="600"/>
+</div>
+
+###### **Data masking.  Each patch is assigned with a positional embedding. The masked patch is invisible to the encoders.**
 
 # Datasets and Evaluation Metrics
 
