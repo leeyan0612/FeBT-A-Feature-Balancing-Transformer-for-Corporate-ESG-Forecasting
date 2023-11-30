@@ -45,14 +45,14 @@ class Exp(Exp_Basic):
         prex = str(self.args.h_dim) + self.args.pf
         # 选择数据生成类（用于定义怎么构建每一个样本数据）
         data_dict = {
-            'ETTh1': Dataset_ETT_hour,  # 源码作者数据所使用的的数据生成类
-            'ETTh2': Dataset_ETT_hour,  # 源码作者数据所使用的的数据生成类
-            'ETTm1': Dataset_ETT_minute,  # 源码作者数据所使用的的数据生成类
-            'ETTm2': Dataset_ETT_minute,  # 源码作者数据所使用的的数据生成类
-            'WTH': Dataset_Custom,  # 源码作者数据所使用的的数据生成类
-            'Solar': Dataset_Custom,  # 源码作者数据所使用的的数据生成类
-            'custom': Dataset_Custom,  # 自己的数据，可以自己修改改类
-            'all': Dataset_Custom,  # 自己的数据，可以自己修改改类
+            'ETTh1': Dataset_ETT_hour,
+            'ETTh2': Dataset_ETT_hour,
+            'ETTm1': Dataset_ETT_minute,
+            'ETTm2': Dataset_ETT_minute,
+            'WTH': Dataset_Custom,
+            'Solar': Dataset_Custom,
+            'custom': Dataset_Custom,
+            'all': Dataset_Custom,
         }
         # 选择出数据生成类
         Data = data_dict[self.args.data]
