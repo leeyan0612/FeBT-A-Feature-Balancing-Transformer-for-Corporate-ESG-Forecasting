@@ -10,8 +10,9 @@ Code for **_"FeBT : A Feature Balancing Transformer for Corporate ESG-Forecastin
    	- [Evaluation Metrics](#evaluation-metrics)
  - [Performance](#performance)
  - [Conclusion](#conclusion)	
- 	- [Contribution](#contribution)
-   	- [Limitation](#limitation)
+ 	- [Theoretical Implications](#theoretical-implications)
+   	- [Practical Implications](#practical-implications)
+ - [Data Availability Statement](#data-availability-statement)	
 
 # Abstract
 We propose FeBT, which is an end-to-end model based on a masking autoencoder and Transformer. FeBT incorporates a novel feature balancing technique that compresses and enhances high-dimensional features from imbalanced data into low-dimensional representations, thereby aligning them with other features. We also use an appropriate sliding window approach to expand the sample size and effectively capture temporal information, which leads to improved prediction performance. Through a series of experiments, we determined the optimal model structure and verified the superior performance of FeBT compared with state-of-the-art methods in predicting ESG performance.
@@ -82,10 +83,16 @@ In parallel, we extended our investigation to ESG rating classification to gain 
 
 # Conclusion
 
-## Contribution
+## Theoretical Implications
 
-In this study, we proposed FeBT, which is an end-to-end model specifically designed to accurately predict corporate ESG scores. Our model addresses the challenge of imbalanced data and achieves comprehensive predictions in a single step. By incorporating features from diverse dimensions and capturing their time-series information, FeBT demonstrated satisfactory prediction performance, surpassing both conventional machine learning models and temporal models currently used in this domain. Moreover, as the dimensionality and time horizon of ESG disclosures expanded, FeBT exhibited even more remarkable advantages.
+The evaluation system for corporate ESG scores is characterized by its complexity and significant dimensional variability among its features. Overlooking the high-dimensional folding features could lead to missing critical aspects. Directly merging these folding features with a firm’s plain features during training may impede the model’s predictive efficiency. Additionally, conventional machine learning models often overlook the temporal nature of ESG scores. To address these gaps, we developed FeBT, a two-stage, data-adaptive ESG prediction model leveraging Transformer technology. Our approach introduces a novel Feature Balancing Module (FBM), enhancing the compression of high-dimensional features and effectively addressing imbalances across any type of folding feature, thereby amplifying the model’s expressiveness. To our knowledge, FeBT represents the first universal feature balancing pipeline specifically designed to tackle the challenges posed by imbalanced ESG data.
 
-## Limitation
+## Practical Implications
 
-FeBT still has certain limitations.  First, the upstream MAE module solely focuses on data compression enhancement and does not encompass feature selection capabilities. Additionally, the Transformer uses a linear layer to map multidimensional features to one-dimensional representations during multidimensional time-series prediction, which might not adequately capture the essence of other features. To address these limitations, in future work, we will propose a two-stage integrated model that incorporates feature selection into FeBT. Furthermore, we intend to use a more sophisticated model structure to facilitate feature learning and map from multidimensional to one-dimensional representations. Such enhancements have the potential to improve the overall performance of our model.
+FeBT empowers each feature to realize its full potential, unencumbered by data imbalance issues. In the realm of ESG evaluation, challenges such as limited score coverage, high subjectivity, and poor comparability among different systems are prevalent. Leveraging publicly available data, our proposed ESG forecasting model substantially mitigates these concerns. Experimental outcomes on our dataset suggest that FeBT has the capability to enhance the uniformity and transparency of ESG evaluation systems. This advancement contributes to the ongoing enhancement of the systems’ reliability and overall impact in the field.
+
+# Data Availability Statement
+
+The model was evaluated using publicly available benchmarks that can be accessed via their references.
+
+
