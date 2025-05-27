@@ -81,13 +81,15 @@ In parallel, we extended our investigation to ESG rating classification to gain 
 
 # Citation
 
->@article{li2025febt,
->  title={FeBT: A Feature Balancing Transformer for Corporate ESG Forecasting},
->  author={Li, Yawen and Zhuang, Mengyu and Ye, Guanhua and Li, Yan and Wang, Junheng and Zhou, Jinyi and Zhang, Pengfei},
->  journal={IEEE Transactions on Knowledge and Data Engineering},
->  year={2025},
->  publisher={IEEE}
->}
+```
+@article{li2025febt,
+  title={FeBT: A Feature Balancing Transformer for Corporate ESG Forecasting},
+  author={Li, Yawen and Zhuang, Mengyu and Ye, Guanhua and Li, Yan and Wang, Junheng and Zhou, Jinyi and Zhang, Pengfei},
+  journal={IEEE Transactions on Knowledge and Data Engineering},
+  year={2025},
+  publisher={IEEE}
+}
+```
 
 # Data Availability Statement
 
